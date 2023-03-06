@@ -1,5 +1,6 @@
 package com.example.jokesplash.remote
 
+import com.example.jokesplash.BuildConfig
 import com.example.jokesplash.model.JokesClass
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -11,6 +12,8 @@ import retrofit2.http.Query
 
 const val BASE_URL = "https://jokes-by-api-ninjas.p.rapidapi.com/v1/"
 
+const val API_KEY = BuildConfig.API_KEY
+
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
@@ -18,7 +21,7 @@ private val moshi = Moshi.Builder()
 private val client = OkHttpClient.Builder()
     .addInterceptor { chain ->
         val newRequest = chain.request().newBuilder()
-            .addHeader("X-RapidAPI-Key", "d841fadc6emshcff481dd4ef3e2cp148a97jsnd6be3c3c51b1")
+            .addHeader("X-RapidAPI-Key", API_KEY)
             .addHeader("X-RapidAPI-Host", "jokes-by-api-ninjas.p.rapidapi.com")
             .build()
         chain.proceed(newRequest)
