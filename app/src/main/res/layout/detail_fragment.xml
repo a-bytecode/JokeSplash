@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/custom_button_rounded_black">
+        android:background="@drawable/custom_backround">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/jokes_CardView"
@@ -19,7 +19,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            app:cardCornerRadius="10dp"
+            app:cardCornerRadius="0dp"
             app:cardElevation="10dp"
             app:layout_constraintBottom_toTopOf="@+id/refresh_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -29,14 +29,17 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/black">
+                android:background="@drawable/custom_jokes">
 
                 <TextView
                     android:id="@+id/jokesText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/alata"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/archivo"
                     android:text="JokeSplash"
                     android:textAlignment="center"
                     android:textColor="@color/white"

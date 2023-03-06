@@ -19,14 +19,15 @@
     <item>
         <shape>
             <gradient
-                android:startColor="#008F07"
-                android:endColor="#012703"
+                android:startColor="#BD3105"
+                android:centerColor="#370107"
+                android:endColor="#BD3105"
                 android:angle="270" />
             <stroke
                 android:width="2dp"
                 android:color="#000000" />
             <corners
-                android:radius="8dp" />
+                android:radius="0dp" />
             <padding
                 android:left="2dp"
                 android:top="2dp"
