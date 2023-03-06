@@ -8,6 +8,7 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.jokesplash.databinding.DetailFragmentBinding
 
 class DetailFragment:Fragment() {
@@ -31,12 +32,15 @@ class DetailFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
         binding.jokesCardView.setOnClickListener {
             binding.jokesCardView.startAnimation(animations)
             viewModel.geJokes()
+        }
+
+        binding.backButton.setOnClickListener {
+            findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToHomeFragment())
         }
 
         viewModel.jokes.observe(viewLifecycleOwner, Observer { jokeslist ->
