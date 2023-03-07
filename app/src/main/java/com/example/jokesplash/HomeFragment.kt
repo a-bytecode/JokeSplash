@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -30,9 +32,28 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        //TODO Spinner maximale Anzahl an 4 Elementen festsetzen, den rest Scrollbar.
+
+//        val spinner = view.findViewById<Spinner>(R.id.spinner_home)
+//
+//        val itemHeight = resources.getDimension(R.dimen.spinner_item_height)
+//
+//        spinner.dropDownWidth = (itemHeight * 4).toInt()
+//
+//        spinner.dropDownVerticalOffset = itemHeight.toInt()
+
+
+        val options = listOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerHome.adapter = adapter
+
+
         val drawableElements = arrayOf(
             R.drawable.funny1,
-            R.drawable.funny3,
             R.drawable.funny2,
             R.drawable.funny4,
             R.drawable.funny5,
