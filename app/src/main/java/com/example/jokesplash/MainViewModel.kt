@@ -13,10 +13,10 @@ class MainViewModel : ViewModel() {
     val jokes = repository.jokes
 
 
-    fun geJokes(){
+    fun geJokes(limit:Int){
         viewModelScope.launch {
             try {
-                repository.getJokes()
+                repository.getJokes(limit)
             } catch (e:Exception) {
                 Log.e("MainViewModel","$e")
             }

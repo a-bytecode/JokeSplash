@@ -14,12 +14,13 @@ class Repository {
     get() = _jokes
 
 
-    suspend fun getJokes(){
-        val response = JokesApi.retrofitService.getJokes(1)
+    suspend fun getJokes(limit:Int){
+        val response = JokesApi.retrofitService.getJokes(limit)
 
         _jokes.value = response
         Log.e("MainViewModelTest","${jokes.value}")
 
     }
+
 
 }

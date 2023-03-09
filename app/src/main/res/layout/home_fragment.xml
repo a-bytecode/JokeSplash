@@ -108,7 +108,7 @@
             android:dropDownWidth="wrap_content"
             android:dropDownSelector="@drawable/custom_button_rounded_black"
             android:fadeScrollbars="false"
-            android:minHeight="40dp"
+            android:minHeight="48dp"
             android:popupBackground="@drawable/custom_button_rounded_black"
             android:scrollbars="vertical"
             app:layout_constraintBottom_toTopOf="@+id/go4Jokes"

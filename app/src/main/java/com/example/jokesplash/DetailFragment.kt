@@ -17,6 +17,21 @@ class DetailFragment:Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
+    companion object {
+        private const val ARG_LIMIT = "limit"
+
+        fun newInstance(limit: Int): DetailFragment {
+            val args = Bundle().apply {
+                putInt(ARG_LIMIT, limit)
+            }
+            val fragment = DetailFragment()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    private var limit: Int = 0
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,11 +46,15 @@ class DetailFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        arguments?.let {
+            limit = it.getInt(ARG_LIMIT)
+        }
+
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
         binding.jokesCardView.setOnClickListener {
             binding.jokesCardView.startAnimation(animations)
-            viewModel.geJokes()
+            viewModel.geJokes(limit)
         }
 
         binding.backButton.setOnClickListener {
