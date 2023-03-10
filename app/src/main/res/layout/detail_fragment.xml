@@ -12,7 +12,7 @@
         android:background="@drawable/custom_backround">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/jokes_CardView"
+            android:id="@+id/jokes_CardView_Recycler"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
