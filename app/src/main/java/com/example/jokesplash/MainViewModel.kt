@@ -12,7 +12,6 @@ class MainViewModel : ViewModel() {
 
     val jokes = repository.jokes
 
-
     fun geJokes(limit:Int){
         viewModelScope.launch {
             try {

@@ -12,6 +12,7 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.jokesplash.databinding.HomeFragmentBinding
@@ -39,7 +40,7 @@ class HomeFragment: Fragment() {
 
         //TODO Spinner maximale Anzahl an 4 Elementen festsetzen, den rest Scrollbar.
 
-        val options = listOf(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)
+        val options = listOf(1,2,3,4,5)
 
         val limitSpinner = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
 
@@ -49,14 +50,17 @@ class HomeFragment: Fragment() {
 
         binding.spinnerHome.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val limit = options[position]
-                viewModel.geJokes(limit)
-                val detailFragment = DetailFragment.newInstance(limit)
-                val transaction = requireFragmentManager().beginTransaction()
-                transaction.replace(R.id.homeFragment, detailFragment)
-                transaction.addToBackStack(null)
-                transaction.commit()
+
+                val navController = NavHostFragment.findNavController(this@HomeFragment)
+                val selectedItem = parent?.getItemAtPosition(position).toString()
+                val bundle = Bundle().apply {
+                    putString("selectedItem", selectedItem)
+                }
+                navController.navigate(R.id.action_homeFragment_to_detailFragment,bundle)
+
             }
+
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Toast.makeText(requireContext(),"Please select Limit",Toast.LENGTH_LONG).show()
             }
