@@ -12,7 +12,7 @@
         android:background="@drawable/custom_backround">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/jokes_CardView_Recycler"
+            android:id="@+id/jokes_CardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -31,7 +31,7 @@
                 android:background="@drawable/custom_jokes">
 
                 <TextView
-                    android:id="@+id/item_text"
+                    android:id="@+id/jokesText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
