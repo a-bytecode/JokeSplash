@@ -56,8 +56,7 @@ class HomeFragment: Fragment() {
                 val bundle = Bundle().apply {
                     putString("selectedItem", selectedItem)
                 }
-                navController.navigate(R.id.action_homeFragment_to_detailFragment,bundle)
-
+//                navController.navigate(R.id.action_homeFragment_to_recyclerView_Fragment,bundle)
             }
 
 

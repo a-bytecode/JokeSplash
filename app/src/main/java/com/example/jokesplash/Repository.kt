@@ -14,7 +14,7 @@ class Repository {
     get() = _jokes
 
 
-    suspend fun getJokes(limit:Int){
+    suspend fun getJokes(limit: Int){
         val response = JokesApi.retrofitService.getJokes(limit)
 
         _jokes.value = response

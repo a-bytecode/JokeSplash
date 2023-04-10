@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -41,11 +42,22 @@ class DetailFragment:Fragment() {
 
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
-        binding.jokesCardView.setOnClickListener {
-            binding.jokesCardView.startAnimation(animations)
-            if (selectedSpinnerItem != null) {
-                viewModel.geJokes(selectedSpinnerItem.toInt())
+        if (!selectedSpinnerItem.isNullOrEmpty()) {
+            val selectedLimit = selectedSpinnerItem.toIntOrNull()
+
+            if (selectedLimit != null) {
+
+                binding.jokesCardView.setOnClickListener {
+                    animations.start()
+                    viewModel.getJokes(selectedLimit)
+                }
+
+            } else {
+                Toast.makeText(requireContext(),"Das Limit ist nicht gesetzt",Toast.LENGTH_LONG).show()
             }
+        } else {
+            Toast.makeText(requireContext(),"Kein Element im bundle vorhanden",Toast.LENGTH_LONG).show()
+
         }
 
         binding.backButton.setOnClickListener {
