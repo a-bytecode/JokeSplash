@@ -1,6 +1,7 @@
 package com.example.jokesplash
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,9 +29,6 @@ class DetailFragment:Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        val view = inflater.inflate(R.layout.detail_fragment, container, false)
-
         binding = DetailFragmentBinding.inflate(inflater)
 
         return binding.root
@@ -38,26 +36,15 @@ class DetailFragment:Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val selectedSpinnerItem = requireArguments().getString("selectedItem")
-
+//        val selectedSpinnerItem = arguments?.getString("selectedItem")
+        // Umwandlung in Int für limit in Jokes
+        val selectedLimit = DetailFragmentArgs.fromBundle(requireArguments()).selectedItem
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
-        if (!selectedSpinnerItem.isNullOrEmpty()) {
-            val selectedLimit = selectedSpinnerItem.toIntOrNull()
-
-            if (selectedLimit != null) {
-
-                binding.jokesCardView.setOnClickListener {
-                    animations.start()
-                    viewModel.getJokes(selectedLimit)
-                }
-
-            } else {
-                Toast.makeText(requireContext(),"Das Limit ist nicht gesetzt",Toast.LENGTH_LONG).show()
-            }
-        } else {
-            Toast.makeText(requireContext(),"Kein Element im bundle vorhanden",Toast.LENGTH_LONG).show()
-
+        binding.jokesCardView.setOnClickListener {
+            viewModel.getJokes(selectedLimit)
+            Log.d("LIMIT", "$selectedLimit")
+//            animations.start()
         }
 
         binding.backButton.setOnClickListener {

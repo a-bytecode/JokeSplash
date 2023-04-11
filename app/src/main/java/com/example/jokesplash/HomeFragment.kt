@@ -33,12 +33,11 @@ class HomeFragment: Fragment() {
 
         return binding.root
 
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        //TODO Spinner maximale Anzahl an 4 Elementen festsetzen, den rest Scrollbar.
+        //TODO Spinner maximale Anzahl an 5 Elementen festsetzen, den rest Scrollbar.
 
         val options = listOf(1,2,3,4,5)
 
@@ -51,13 +50,24 @@ class HomeFragment: Fragment() {
         binding.spinnerHome.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
-                val navController = NavHostFragment.findNavController(this@HomeFragment)
-                val selectedItem = parent?.getItemAtPosition(position).toString()
-                val bundle = Bundle().apply {
-                    putString("selectedItem", selectedItem)
+                val selectedItem = parent?.getItemIdAtPosition(position).toString()
+                val selectedLimit = selectedItem.toIntOrNull()
+
+                binding.go4Jokes.setOnClickListener {
+                    if (selectedLimit != null) {
+                        if(selectedLimit > 1) {
+                            val actionRecycler = HomeFragmentDirections.actionHomeFragmentToRecyclerViewFragment(selectedLimit)
+                            findNavController().navigate(actionRecycler)
+                        } else {
+                            val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedLimit)
+                            findNavController().navigate(actionDetail)
+                        }
+                    } else {
+                        Toast.makeText(requireContext(), "Das Limit ist nicht gesetzt", Toast.LENGTH_LONG).show()
+                    }
                 }
-//                navController.navigate(R.id.action_homeFragment_to_recyclerView_Fragment,bundle)
-            }
+
+                }
 
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -77,21 +87,8 @@ class HomeFragment: Fragment() {
             R.drawable.funny11
         )
 
-        val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.pulse)
-
-//        var currentDrawableIndex = 0
-
-        binding.go4Jokes.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
-        }
-
-//        binding.glideCoverHome.setOnClickListener {
-////            currentDrawableIndex = (currentDrawableIndex +1) % drawableElements.size
-//            Glide.with(requireContext())
-//                .load(drawableElements[currentDrawableIndex])
-//                .centerCrop()
-//                .placeholder(drawableElements.random())
-//                .into(binding.glideCoverHome)
+//        binding.go4Jokes.setOnClickListener {
+//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
 //        }
 
         Glide
