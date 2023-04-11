@@ -42,9 +42,11 @@ class DetailFragment:Fragment() {
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
         binding.jokesCardView.setOnClickListener {
+
+            binding.jokesCardView.startAnimation(animations)
             viewModel.getJokes(selectedLimit)
-            Log.d("LIMIT", "$selectedLimit")
-//            animations.start()
+            Log.e("LIMIT","$selectedLimit")
+
         }
 
         binding.backButton.setOnClickListener {

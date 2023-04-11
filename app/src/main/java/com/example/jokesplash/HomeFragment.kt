@@ -51,7 +51,7 @@ class HomeFragment: Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
                 val selectedItem = parent?.getItemIdAtPosition(position).toString()
-                val selectedLimit = selectedItem.toIntOrNull()
+                val selectedLimit = selectedItem.toIntOrNull()?.plus(1)
 
                 binding.go4Jokes.setOnClickListener {
                     if (selectedLimit != null) {
