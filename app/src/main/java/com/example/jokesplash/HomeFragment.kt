@@ -1,6 +1,7 @@
 package com.example.jokesplash
 
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,10 +13,14 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.jokesplash.databinding.HomeFragmentBinding
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment: Fragment() {
 
@@ -39,13 +44,15 @@ class HomeFragment: Fragment() {
 
         //TODO Spinner maximale Anzahl an 5 Elementen festsetzen, den rest Scrollbar.
 
-        val options = listOf(1,2,3,4,5)
+        val options = listOf(1,2,3,4,5,6,7,8,9,10)
 
         val limitSpinner = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, options)
 
         limitSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.spinnerHome.adapter = limitSpinner
+
+        val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation2)
 
         binding.spinnerHome.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -54,21 +61,24 @@ class HomeFragment: Fragment() {
                 val selectedLimit = selectedItem.toIntOrNull()?.plus(1)
 
                 binding.go4Jokes.setOnClickListener {
-                    if (selectedLimit != null) {
-                        if(selectedLimit > 1) {
-                            val actionRecycler = HomeFragmentDirections.actionHomeFragmentToRecyclerViewFragment(selectedLimit)
-                            findNavController().navigate(actionRecycler)
+                    binding.go4Jokes.startAnimation(animations)
+
+                    lifecycleScope.launch(Main) {
+                        delay(1000)
+                        if (selectedLimit != null) {
+                            if(selectedLimit > 1) {
+                                val actionRecycler = HomeFragmentDirections.actionHomeFragmentToRecyclerViewFragment(selectedLimit)
+                                findNavController().navigate(actionRecycler)
+                            } else {
+                                val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedLimit)
+                                findNavController().navigate(actionDetail)
+                            }
                         } else {
-                            val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedLimit)
-                            findNavController().navigate(actionDetail)
+                            Toast.makeText(requireContext(), "Das Limit ist nicht gesetzt", Toast.LENGTH_LONG).show()
                         }
-                    } else {
-                        Toast.makeText(requireContext(), "Das Limit ist nicht gesetzt", Toast.LENGTH_LONG).show()
                     }
                 }
-
-                }
-
+            }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 Toast.makeText(requireContext(),"Please select Limit",Toast.LENGTH_LONG).show()
@@ -86,10 +96,6 @@ class HomeFragment: Fragment() {
             R.drawable.funny10,
             R.drawable.funny11
         )
-
-//        binding.go4Jokes.setOnClickListener {
-//            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment())
-//        }
 
         Glide
             .with(requireContext())
