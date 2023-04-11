@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -34,35 +35,31 @@ class RecyclerView_Fragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-
         val jokeAdapter = JokeAdapter()
 
         binding.jokeRecycler.adapter = jokeAdapter
 
-//        val selectedLimit = DetailFragmentArgs.fromBundle(requireArguments()).selectedItem
-
         val selectedLimit = RecyclerView_FragmentArgs.fromBundle(requireArguments()).selectedItem
+
+        val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
 
         binding.jokesRecyclerCardView.setOnClickListener {
             binding.jokeRecycler.visibility = View.VISIBLE
             binding.jokesRecyclerCardView.visibility = View.INVISIBLE
 
+            binding.jokesRecyclerCardView.startAnimation(animations)
             viewModel.getJokes(selectedLimit)
             Log.e("LIMIT","$selectedLimit")
-
-            val jokeslist = viewModel.jokes.value
-            if (!jokeslist.isNullOrEmpty()) {
-                jokeslist.firstOrNull()?.let { selectedJokesList.add(it) }
-                jokeAdapter.notifyDataSetChanged()
-
-            }
         }
 
         binding.backButton.setOnClickListener {
             findNavController().navigate(RecyclerView_FragmentDirections.actionRecyclerViewFragmentToHomeFragment())
         }
 
-
-
+        viewModel.jokes.observe(viewLifecycleOwner, Observer {
+            if ( it != null) {
+                jokeAdapter.submitlist(it)
+            }
+        })
     }
 }
