@@ -46,7 +46,6 @@ class DetailFragment:Fragment() {
             binding.jokesCardView.startAnimation(animations)
             viewModel.getJokes(selectedLimit)
             Log.e("LIMIT","$selectedLimit")
-
         }
 
         binding.backButton.setOnClickListener {
