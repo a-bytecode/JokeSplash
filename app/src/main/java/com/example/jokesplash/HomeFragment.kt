@@ -1,6 +1,7 @@
 package com.example.jokesplash
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.jokesplash.adapter.JokeAdapter
 import com.example.jokesplash.databinding.HomeFragmentBinding
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
@@ -23,7 +25,6 @@ class HomeFragment: Fragment() {
     private lateinit var binding : HomeFragmentBinding
 
     private val viewModel: MainViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +66,8 @@ class HomeFragment: Fragment() {
                             if(selectedLimit > 1) {
                                 val actionRecycler = HomeFragmentDirections.actionHomeFragmentToRecyclerViewFragment(selectedLimit)
                                 findNavController().navigate(actionRecycler)
+                                Log.e("LIMITHOME","$selectedLimit")
+
                             } else {
                                 val actionDetail = HomeFragmentDirections.actionHomeFragmentToDetailFragment(selectedLimit)
                                 findNavController().navigate(actionDetail)

@@ -46,12 +46,17 @@ class RecyclerView_Fragment: Fragment() {
         val animation2 = AnimationUtils.loadAnimation(requireContext(),R.anim.animation2)
 
         binding.jokesRecyclerCardView.setOnClickListener {
-            binding.jokeRecycler.visibility = View.VISIBLE
-            binding.jokesRecyclerCardView.visibility = View.INVISIBLE
-
             binding.jokesRecyclerCardView.startAnimation(animations)
-            viewModel.getJokes(selectedLimit)
-            Log.e("LIMIT","$selectedLimit")
+            lifecycleScope.launch(Main) {
+                delay(1000)
+                viewModel.getJokes(selectedLimit)
+                binding.jokeRecycler.visibility = View.VISIBLE
+                binding.jokesRecyclerCardView.visibility = View.INVISIBLE
+                jokeAdapter.selectedLimit(selectedLimit)
+                Log.e("LIMIT","$selectedLimit")
+            }
+
+
         }
 
         binding.backButton.setOnClickListener {
@@ -64,7 +69,7 @@ class RecyclerView_Fragment: Fragment() {
 
         viewModel.jokes.observe(viewLifecycleOwner, Observer {
             if ( it != null) {
-                jokeAdapter.submitlist(it)
+                jokeAdapter.submitlist(it as MutableList<JokesClass>)
             }
         })
     }
