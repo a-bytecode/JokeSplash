@@ -1,20 +1,16 @@
 package com.example.jokesplash
 
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.jokesplash.databinding.HomeFragmentBinding
@@ -58,7 +54,7 @@ class HomeFragment: Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
 
                 val selectedItem = parent?.getItemIdAtPosition(position).toString()
-                val selectedLimit = selectedItem.toIntOrNull()?.plus(1)
+                val selectedLimit = selectedItem.toIntOrNull()?.plus(1) // +1 Anpassung des Ausgewählten Elements
 
                 binding.go4Jokes.setOnClickListener {
                     binding.go4Jokes.startAnimation(animations)

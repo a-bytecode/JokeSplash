@@ -24,8 +24,6 @@ class RecyclerView_Fragment: Fragment() {
 
     private val viewModel: MainViewModel by activityViewModels()
 
-    private val selectedJokesList = mutableListOf<JokesClass>()
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +36,7 @@ class RecyclerView_Fragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val jokeAdapter = JokeAdapter()
+        val jokeAdapter = JokeAdapter(viewModel)
 
         binding.jokeRecycler.adapter = jokeAdapter
 
