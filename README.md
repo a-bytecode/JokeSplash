@@ -1,6 +1,5 @@
 
-<img alt="Shows an illustrated sun in light mode and a moon with stars in dark mode." src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/174f5f7e042dba4e385662e14d516b770c852684/app/src/debug/ic_launcher-playstore.png?token=A3Q3OU7JSV6RAGHTR55HLMLEHGWQK" width="400" height="400">
-
+<img src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/174f5f7e042dba4e385662e14d516b770c852684/app/src/debug/ic_launcher-playstore.png?token=A3Q3OU7JC7FKTSP6GATZNFDEHG26G" width="400" height="400">
 
 # JokeSplash :tm:
 
@@ -27,4 +26,3 @@ Here's a small entertainment app called JokeSplash that fetches funny jokes from
 
 ## Demo:
 
-<img alt="JokeSplash Demo" src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/643eaacaaf648e132cae27490dbdaa6e91a5de1d/JokseSplash_demo.png?token=A3Q3OU5IX3RQOVJAI6W2UKLEHGZPU" height="600">
