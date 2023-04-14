@@ -3,7 +3,7 @@
 
 # JokeSplash :tm:
 
-Here's a small entertainment app called JokeSplash that retrieves funny jokes through API calls written with Kotlin.
+Here's a small entertainment app called JokeSplash that retrieves funny jokes through API calls.
 
 ## Architecture patterns :white_check_mark:
 
