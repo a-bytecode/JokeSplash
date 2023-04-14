@@ -1,5 +1,5 @@
 
-<img src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/174f5f7e042dba4e385662e14d516b770c852684/app/src/debug/ic_launcher-playstore.png?token=A3Q3OU7JC7FKTSP6GATZNFDEHG26G" width="400" height="400">
+<img src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/174f5f7e042dba4e385662e14d516b770c852684/app/src/debug/ic_launcher-playstore.png?token=A3Q3OUZECQUJZXNQFV2UK6LEHG356" width="400" height="400">
 
 # JokeSplash :tm:
 
@@ -25,4 +25,4 @@ Here's a small entertainment app called JokeSplash that fetches funny jokes from
 *https://api-ninjas.com/api/jokes*
 
 ## Demo:
-
+<a href="https://freeimage.host/i/Hvlu45u"><img src="https://iili.io/Hvlu45u.md.png" alt="Bildbeschreibung" width="300" height="600"></a>
