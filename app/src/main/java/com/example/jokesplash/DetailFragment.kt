@@ -16,6 +16,10 @@ import com.example.jokesplash.databinding.DetailFragmentBinding
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import java.util.concurrent.TimeUnit
 
 class DetailFragment:Fragment() {
 
@@ -41,10 +45,21 @@ class DetailFragment:Fragment() {
         val animations = AnimationUtils.loadAnimation(requireContext(),R.anim.animation)
         val animations2 = AnimationUtils.loadAnimation(requireContext(),R.anim.animation2)
 
+        val party = Party(
+            speed = 0f,
+            maxSpeed = 50f,
+            damping = 0.9f,
+            spread = listOf(1000,1200,2000,3000).random(),
+            colors = listOf(0x367C23, 0x012703, 0xFFFFFF, 0x000000, 0x00FF0D, 0x00FF0D),
+            position = Position.Relative(0.5, 0.3),
+            emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100)
+        )
+
         binding.jokesCardView.setOnClickListener {
             binding.jokesCardView.startAnimation(animations)
             viewModel.getJokes(selectedLimit)
             Log.e("LIMIT","$selectedLimit")
+            binding.konfettiView.start(party)
         }
 
         binding.backButton.setOnClickListener {
