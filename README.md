@@ -1,5 +1,5 @@
 
-<img src="https://raw.githubusercontent.com/a-bytecode/JokeSplash/174f5f7e042dba4e385662e14d516b770c852684/app/src/debug/ic_launcher-playstore.png?token=A3Q3OUZECQUJZXNQFV2UK6LEHG356" width="400" height="400">
+<a href="https://freeimage.host/de"><img src="https://iili.io/HvlRKjj.jpg" alt="Bildbeschreibung" width="400" height="200"></a>
 
 # JokeSplash :tm:
 
