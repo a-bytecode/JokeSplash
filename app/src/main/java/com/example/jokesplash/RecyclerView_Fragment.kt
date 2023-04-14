@@ -48,7 +48,7 @@ class RecyclerView_Fragment: Fragment() {
         binding.jokesRecyclerCardView.setOnClickListener {
             binding.jokesRecyclerCardView.startAnimation(animations)
             lifecycleScope.launch(Main) {
-                delay(1000)
+                delay(500)
                 viewModel.getJokes(selectedLimit)
                 binding.jokeRecycler.visibility = View.VISIBLE
                 binding.jokesRecyclerCardView.visibility = View.INVISIBLE
